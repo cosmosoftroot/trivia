@@ -1,0 +1,12 @@
+@import '../../styles/Global.scss';
+
+.question-card{
+    border: 1px solid $color2;
+    width: 80%;
+    border-radius: 10px;
+    opacity: 0.9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+    background-color: #fefefe;
+    padding: 16px;
+    margin-bottom: 16px;
+}

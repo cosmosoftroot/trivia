@@ -1,10 +1,17 @@
 import React from 'react'
 import './styles.scss'
+import {Options} from  '../Options'
 
 export function Question({question}) {
-    return (
-        <section className="question">
-            <article className='question__txt'>{question}</article>
-        </section>
-    )
+
+    const createTxt = (txtFromApi) =>{
+        return {__html: txtFromApi}
+    }
+    
+    const formatTxt = (question) => {
+        return <div dangerouslySetInnerHTML={createTxt(question)}/>
+    }
+
+
+    return <article className='question__txt'>{formatTxt(question)}</article>
 }

@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Loading } from '../../components/Loading'
 import { Category } from '../../components/Category'
+import { QuestionCard } from '../../components/QuestionCard'
 import { Question } from '../../components/Question'
+import { Options } from '../../components/Options'
+import { ButtonNext } from '../../components/ButtonNext'
 import './styles.scss'
 
 const apiUrl = process.env.API_URL
@@ -10,6 +13,7 @@ export function Quiz () {
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState([])
   const [currentQuestion, setCurrentQuestion] = useState(0)
+
 
   useEffect(() => {
     setLoading(true)
@@ -27,6 +31,14 @@ export function Quiz () {
       })
   }, [])
 
+  const handleClick = () =>{
+
+  }
+
+  const handleChange = (e) =>{
+    console.log(e.target.value)
+  }
+
   if (loading) return <Loading />
 
   return (
@@ -35,8 +47,16 @@ export function Quiz () {
       {
         data.length && (
           <div className="quiz">
-          <Category category={data[currentQuestion].category} />
-          <Question question={data[currentQuestion].question}/>
+            <Category category={data[currentQuestion].category} />
+            <QuestionCard>
+              <Question question={data[currentQuestion].question} />
+              <Options handleChange={handleChange}/>
+              <ButtonNext />
+            </QuestionCard>
+
+            <section className='quiz__count'>
+              {`${currentQuestion + 1} of ${data.length}`}
+            </section>
           </div>
         )
       }

@@ -1,0 +1,26 @@
+@import '../../styles/Global.scss';
+
+.option{
+    border: 1px solid #eee;
+    margin-bottom: 16px;
+}
+
+.option input{
+    display: none;
+}
+.option label{
+    text-align: center;
+    background-color: #2dde98;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fefefe;
+    font-size: 1.6em;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.option input:checked + label{
+    border: 3px solid #0da568;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+}

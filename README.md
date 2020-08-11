@@ -1,4 +1,4 @@
-# React Basic Base
+# Trivia
 
 ## Features
 
