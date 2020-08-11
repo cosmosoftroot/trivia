@@ -10,3 +10,9 @@
     padding: 16px;
     margin-bottom: 16px;
 }
+
+@media (max-width: 360px) {
+    .question-card {
+        width: 90%;
+    }
+}

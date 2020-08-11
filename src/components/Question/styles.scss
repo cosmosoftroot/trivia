@@ -1,19 +1,13 @@
 @import '../../styles/Global.scss';
 
-.question{
-  
-}
-
 .question__txt{
     font-size: 1.4em;
     margin-bottom: 16px;
+    overflow-x: auto;
 }
 
-
-
-
 @media (max-width: 360px) {
-    .question {
-        width: 90%;
+    .question__txt {
+        font-size: 1.3em;
     }
-  }
+}

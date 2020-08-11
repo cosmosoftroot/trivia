@@ -5,6 +5,7 @@ import { QuestionCard } from '../../components/QuestionCard'
 import { Question } from '../../components/Question'
 import { Options } from '../../components/Options'
 import { ButtonNext } from '../../components/ButtonNext'
+import { Warning } from '../../components/Warning'
 import './styles.scss'
 
 const apiUrl = process.env.API_URL
@@ -13,6 +14,8 @@ export function Quiz () {
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState([])
   const [currentQuestion, setCurrentQuestion] = useState(0)
+  const [userResponse, setUserResponse] = useState('')
+  const [warning, setWarning] = useState(false)
 
 
   useEffect(() => {
@@ -31,12 +34,24 @@ export function Quiz () {
       })
   }, [])
 
-  const handleClick = () =>{
+  useEffect(()=>{
+    setUserResponse('')
+  },[currentQuestion])
 
+  const handleNextQuestion = () =>{
+    if(userResponse===""){
+      setWarning(true)
+      
+    }
+    else{
+      setWarning(false)
+      setCurrentQuestion(currentQuestion + 1)
+
+    }
   }
 
   const handleChange = (e) =>{
-    console.log(e.target.value)
+    setUserResponse(e.target.value)
   }
 
   if (loading) return <Loading />
@@ -50,8 +65,9 @@ export function Quiz () {
             <Category category={data[currentQuestion].category} />
             <QuestionCard>
               <Question question={data[currentQuestion].question} />
-              <Options handleChange={handleChange}/>
-              <ButtonNext />
+              <Options handleChange={handleChange} answer={userResponse}/>
+              {warning && <Warning />}
+              <ButtonNext handleNextQuestion={handleNextQuestion}/>
             </QuestionCard>
 
             <section className='quiz__count'>

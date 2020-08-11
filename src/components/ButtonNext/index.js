@@ -1,8 +1,8 @@
 import React from 'react'
 import './styles.scss'
 
-export function ButtonNext({onClick}) {
+export function ButtonNext({handleNextQuestion}) {
     return (
-        <button className='button-next' onClick={onClick}>Next</button>
+        <button className='button-next' onClick={handleNextQuestion}>Next</button>
     )
 }
