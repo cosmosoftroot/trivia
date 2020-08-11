@@ -1,0 +1,67 @@
+@import './Variables.scss';
+@import './Media.scss';
+
+html {
+    box-sizing: border-box;
+    font-family: 'Montserrat',-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  ul, li, h1, h2, h3, p, button { margin: 0; padding: 0; }
+  ul { list-style: none; }
+  button { background: transparent; border: 0; outline: 0 }
+  body {
+    background-color: #333;
+    max-height: 100vh;
+    overscroll-behavior: none;
+    width: 100%; 
+    min-width: 360px;
+    margin: 0;
+    padding: 0;
+    font-size:16px;
+    color: #484747;
+  }
+  #app {
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+    overflow-x: hidden;
+    min-height: 100vh;
+    max-width: 500px;
+    min-width: 360px;
+    margin: 0 auto;
+    background: rgba(251,252,255,1);
+    background: -moz-linear-gradient(top, rgba(251,252,255,1) 0%, rgba(251,252,255,1) 35%, rgba(187,250,205,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(251,252,255,1)), color-stop(35%, rgba(251,252,255,1)), color-stop(100%, rgba(187,250,205,1)));
+    background: -webkit-linear-gradient(top, rgba(251,252,255,1) 0%, rgba(251,252,255,1) 35%, rgba(187,250,205,1) 100%);
+    background: -o-linear-gradient(top, rgba(251,252,255,1) 0%, rgba(251,252,255,1) 35%, rgba(187,250,205,1) 100%);
+    background: -ms-linear-gradient(top, rgba(251,252,255,1) 0%, rgba(251,252,255,1) 35%, rgba(187,250,205,1) 100%);
+    background: linear-gradient(to bottom, rgba(251,252,255,1) 0%, rgba(251,252,255,1) 35%, rgba(187,250,205,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fbfcff', endColorstr='#bbfacd', GradientType=0 );  
+  }
+
+  a{
+    text-decoration: none;
+    color: black;
+  }
+  
+  .button{
+    background-color: $color1;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 1.3em;
+    width:150px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+    transition: 80ms;
+  }
+
+  .button:hover{
+    background-color: #315dc3;
+ 
+   }
+  .button:active{
+   transform: scale(0.9);
+   background-color: #5f77af;
+
+  }

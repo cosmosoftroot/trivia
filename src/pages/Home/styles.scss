@@ -1,0 +1,41 @@
+@import '../../styles/Global.scss';
+
+.home{
+    display: grid;
+    grid-template-columns: minmax(360px, 1fr);
+}
+
+.main{
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+}    
+
+.main__txt,
+.main__txt-enf{
+    font-size: 1.7em;
+    text-align: center;
+    padding: 0 76px;
+    margin-bottom: 48px;
+    box-sizing: border-box;
+    font-weight: 400;
+    line-height: 1.8em;
+    
+}
+
+.main__txt-enf{
+    font-style: italic;
+    font-weight: bold;
+}
+
+@media (max-width: 360px) {
+    .main__txt,
+    .main__txt-enf {
+        font-size: 1.6em;
+        padding: 0 36px;
+    }
+  }
+

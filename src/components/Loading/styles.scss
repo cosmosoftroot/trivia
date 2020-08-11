@@ -1,0 +1,16 @@
+.loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    animation: start_spinner ease-in 300ms;
+}
+
+@keyframes start_spinner{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}

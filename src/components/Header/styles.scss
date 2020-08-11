@@ -1,0 +1,19 @@
+@import '../../styles/Global.scss';
+
+.header{
+    height: $header_height;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.header__title{
+    text-align: center;
+    color: $color3;
+    font-size: 1.8rem;
+}
+
+@media (max-width: 360px) {
+    .header {
+        height: 224px;
+    }
+  }
