@@ -1,0 +1,46 @@
+@import '../../styles/Global.scss';
+
+@mixin result__item{
+    width: 90%;
+    margin: 0 auto 10px;
+    padding: 8px;
+    border-radius: 10px;
+    border: 1px solid $color3;
+    display: grid;
+    grid-template-columns: 75% 1fr 1fr;
+    gap: 8px;
+}
+
+.result__item-ok{
+    @include result__item();
+    border: 2px solid $color2;
+    background-color: $color-ok;
+}
+
+.result__item-fail{
+    @include result__item();
+    border: 2px solid $color-border-fail;
+    background-color: $color-fail;
+}
+
+.result__user-response{
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8em;
+}
+
+.result__icon-ok{
+    text-align: center;
+    margin: auto;
+    color: $color2;
+}
+
+.result__icon-fail{
+    text-align: center;
+    margin: auto;
+    color: $color-border-fail;
+}
+

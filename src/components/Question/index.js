@@ -1,17 +1,11 @@
 import React from 'react'
+import { useDangerouslySetInnerHTML } from '../../hooks/useDangerouslySetInnerHTML'
 import './styles.scss'
-import {Options} from  '../Options'
 
-export function Question({question}) {
-
-    const createTxt = (txtFromApi) =>{
-        return {__html: txtFromApi}
-    }
-    
-    const formatTxt = (question) => {
-        return <div dangerouslySetInnerHTML={createTxt(question)}/>
-    }
-
-
-    return <article className='question__txt'>{formatTxt(question)}</article>
+export function Question ({ question }) {
+  return (
+    <article className='question__txt'>
+      {useDangerouslySetInnerHTML(question)}
+    </article>
+  )
 }

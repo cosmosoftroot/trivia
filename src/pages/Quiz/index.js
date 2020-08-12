@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import { Loading } from '../../components/Loading'
 import { Category } from '../../components/Category'
 import { QuestionCard } from '../../components/QuestionCard'
@@ -6,6 +7,8 @@ import { Question } from '../../components/Question'
 import { Options } from '../../components/Options'
 import { ButtonNext } from '../../components/ButtonNext'
 import { Warning } from '../../components/Warning'
+// import {useSessionStorage} from '../../hooks/useSessionStorage'
+
 import './styles.scss'
 
 const apiUrl = process.env.API_URL
@@ -16,9 +19,13 @@ export function Quiz () {
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [userResponse, setUserResponse] = useState('')
   const [warning, setWarning] = useState(false)
+  const [results, setResults] = useState([])
+  const history = useHistory()
 
+  // const [setLocalStorage, clearSessionStorage] = useSessionStorage();
 
   useEffect(() => {
+    // clearSessionStorage()
     setLoading(true)
     window.fetch(apiUrl)
       .then(res => {
@@ -34,40 +41,56 @@ export function Quiz () {
       })
   }, [])
 
-  useEffect(()=>{
+  useEffect(() => {
     setUserResponse('')
-  },[currentQuestion])
+  }, [currentQuestion])
 
-  const handleNextQuestion = () =>{
-    if(userResponse===""){
+  const handleNextQuestion = () => {
+    if (userResponse === '') {
       setWarning(true)
-      
-    }
-    else{
+    } else {
       setWarning(false)
-      setCurrentQuestion(currentQuestion + 1)
+      const correctAnswer = (data[currentQuestion].correct_answer.toLowerCase() === 'true')
+      const calification = (correctAnswer === userResponse)
+      const resultItem = {
+        question: data[currentQuestion].question,
+        userResponse: userResponse,
+        calification: calification
+      }
 
+      setResults([...results, resultItem])
+
+      if (currentQuestion < data.length - 1) {
+        setCurrentQuestion(currentQuestion + 1)
+      } else {
+        history.push({
+          pathname: '/results',
+          state: { data: results }
+        })
+      }
     }
   }
 
-  const handleChange = (e) =>{
-    setUserResponse(e.target.value)
+  const handleChange = (e) => {
+    const userResponseBoolean = (e.target.value === 'true')
+    setUserResponse(userResponseBoolean)
   }
 
   if (loading) return <Loading />
 
+  console.log(results)
   return (
     <>
- 
+
       {
         data.length && (
-          <div className="quiz">
+          <div className='quiz'>
             <Category category={data[currentQuestion].category} />
             <QuestionCard>
               <Question question={data[currentQuestion].question} />
-              <Options handleChange={handleChange} answer={userResponse}/>
+              <Options handleChange={handleChange} answer={userResponse} />
               {warning && <Warning />}
-              <ButtonNext handleNextQuestion={handleNextQuestion}/>
+              <ButtonNext handleNextQuestion={handleNextQuestion} />
             </QuestionCard>
 
             <section className='quiz__count'>
