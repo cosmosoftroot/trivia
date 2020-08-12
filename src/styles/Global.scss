@@ -51,9 +51,11 @@ html {
     border-radius: 25px;
     font-weight: bold;
     font-size: 1.3em;
-    width:150px;
+    min-width:150px;
     box-shadow: 0 0 10px rgba(0, 0, 0, .5);
     transition: 80ms;
+    margin: 16px auto;
+    display: block;
   }
 
   .button:hover{

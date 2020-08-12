@@ -7,8 +7,6 @@ import { Question } from '../../components/Question'
 import { Options } from '../../components/Options'
 import { ButtonNext } from '../../components/ButtonNext'
 import { Warning } from '../../components/Warning'
-// import {useSessionStorage} from '../../hooks/useSessionStorage'
-
 import './styles.scss'
 
 const apiUrl = process.env.API_URL
@@ -22,11 +20,9 @@ export function Quiz () {
   const [results, setResults] = useState([])
   const history = useHistory()
 
-  // const [setLocalStorage, clearSessionStorage] = useSessionStorage();
-
   useEffect(() => {
-    // clearSessionStorage()
     setLoading(true)
+
     window.fetch(apiUrl)
       .then(res => {
         return res.json()
@@ -43,7 +39,15 @@ export function Quiz () {
 
   useEffect(() => {
     setUserResponse('')
-  }, [currentQuestion])
+    if (data.length) {
+      if (data.length === results.length) {
+        history.push({
+          pathname: '/results',
+          state: { data: results }
+        })
+      }
+    }
+  }, [currentQuestion, results])
 
   const handleNextQuestion = () => {
     if (userResponse === '') {
@@ -58,15 +62,12 @@ export function Quiz () {
         calification: calification
       }
 
-      setResults([...results, resultItem])
+      if (currentQuestion < data.length) {
+        setResults([...results, resultItem])
 
-      if (currentQuestion < data.length - 1) {
-        setCurrentQuestion(currentQuestion + 1)
-      } else {
-        history.push({
-          pathname: '/results',
-          state: { data: results }
-        })
+        if (currentQuestion < data.length - 1) {
+          setCurrentQuestion(currentQuestion + 1)
+        }
       }
     }
   }
@@ -78,12 +79,11 @@ export function Quiz () {
 
   if (loading) return <Loading />
 
-  console.log(results)
   return (
     <>
 
       {
-        data.length && (
+        (data.length) && (
           <div className='quiz'>
             <Category category={data[currentQuestion].category} />
             <QuestionCard>

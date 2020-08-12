@@ -1,0 +1,15 @@
+@import '../../styles/Global.scss';
+
+.scored{
+    height: 150px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.scored__txt{
+    font-size: 1.8em;
+    color: $color3;
+    font-weight: bold;
+}

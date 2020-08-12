@@ -14,7 +14,7 @@ export function ResultItem ({ question, userResponse, calification }) {
       {useDangerouslySetInnerHTML(question)}
       <div className='result__user-response'>{response}</div>
       {calification ? (<MdCheckCircle className='result__icon-ok' size={SIZE} />) : (<MdError className='result__icon-fail' size={SIZE} />)}
-      
+
     </li>
   )
 }
